@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="lv">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Skolēnu Reģistrācija</title>
+		<style>
+			.solis { display: none; }
+			.solis.aktīvs { display: block; }
+		</style>
+	</head>
+	<body>
+		<table width="100%" bgcolor="#b8b8b8" cellpadding="7" cellspacing="0" border="0">
+			<tr valign="middle">
+				<td>
+					<h1>Skolēnu Aptauja</h1>
+					<font face="Arial" size="2">Aizpildiet visas trīs formas.</font>
+				</td>
+			</tr>
+		</table>
+
+		<table width="100%" bgcolor="#d4d4d4" cellpadding="4" cellspacing="0" border="0">
+			<tr>
+				<td align="center">
+					<font face="Arial" size="2">
+						<b>1. Personas dati</b> &nbsp;&gt;&nbsp;
+						2. Kontaktinformācija &nbsp;&gt;&nbsp;
+						3. Aptauja
+					</font>
+				</td>
+			</tr>
+		</table>
+
+		<div id="solis1" class="solis aktīvs">
+			<h2>1. solis &ndash; Personas dati</h2>
+			<form id="forma1" action="#" method="get" name="forma1" onsubmit="return false;">
+				<table cellpadding="4" cellspacing="0">
+					<tr>
+						<td>Vārds:</td>
+						<td><input type="text" name="vards" size="20" /></td>
+					</tr>
+					<tr>
+						<td>Uzvārds:</td>
+						<td><input type="text" name="uzvards" size="20" /></td>
+					</tr>
+					<tr>
+						<td>Vecums:</td>
+						<td><input type="number" name="vecums" size="5" min="5" max="99" /></td>
+					</tr>
+					<tr>
+						<td>Dzimums:</td>
+						<td>
+							<select name="dzimums">
+								<option value="">-- izvēlieties --</option>
+								<option>Vīrietis</option>
+								<option>Sieviete</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+				<br />
+				<input type="button" value="Tālāk &gt;" onclick="nakamais(1)" />
+			</form>
+		</div>
+
+		<div id="solis2" class="solis">
+			<h2>2. solis &ndash; Kontaktinformācija</h2>
+			<form id="forma2" action="#" method="get" name="forma2" onsubmit="return false;">
+				<table cellpadding="4" cellspacing="0">
+					<tr>
+						<td>E-pasts:</td>
+						<td><input type="email" name="epasts" size="24" /></td>
+					</tr>
+					<tr>
+						<td>Tālrunis:</td>
+						<td><input type="text" name="talrunis" size="16" /></td>
+					</tr>
+					<tr>
+						<td>Pilsēta:</td>
+						<td><input type="text" name="pilseta" size="20" /></td>
+					</tr>
+					<tr>
+						<td>Skola:</td>
+						<td><input type="text" name="skola" size="24" /></td>
+					</tr>
+				</table>
+				<br />
+				<input type="button" value="&lt; Atpakaļ" onclick="nakamais(-1)" />
+				&nbsp;
+				<input type="button" value="Tālāk &gt;" onclick="nakamais(1)" />
+			</form>
+		</div>
+
+		<div id="solis3" class="solis">
+			<h2>3. solis &ndash; Aptauja</h2>
+			<form id="forma3" action="#" method="get" name="forma3" onsubmit="return false;">
+				<table cellpadding="4" cellspacing="0">
+					<tr>
+						<td>Mīļākais priekšmets:</td>
+						<td>
+							<select name="prieksmets">
+								<option value="">-- izvēlieties --</option>
+								<option>Matemātika</option>
+								<option>Latviešu valoda</option>
+								<option>Angļu valoda</option>
+								<option>Vēsture</option>
+								<option>Dabaszinības</option>
+								<option>Sports</option>
+								<option>Informātika</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Vidējā atzīme (1&ndash;10):</td>
+						<td><input type="number" name="atzime" size="5" min="1" max="10" /></td>
+					</tr>
+					<tr>
+						<td>Komentārs:</td>
+						<td><textarea name="komentars" rows="3" cols="24"></textarea></td>
+					</tr>
+				</table>
+				<br />
+				<input type="button" value="&lt; Atpakaļ" onclick="nakamais(-1)" />
+				&nbsp;
+				<input type="button" value="Saglabāt" onclick="saglabat()" />
+			</form>
+		</div>
+
+		<div id="solis4" class="solis">
+			<h2>Saglabātie dati</h2>
+			<div id="tabula"></div>
+			<br />
+			<input type="button" value="&lt; Jauns ieraksts" onclick="jauns()" />
+		</div>
+
+		<script>
+			var forma1 = document.getElementById("forma1");
+			var forma2 = document.getElementById("forma2");
+			var forma3 = document.getElementById("forma3");
+			var solis1 = document.getElementById("solis1");
+			var solis2 = document.getElementById("solis2");
+			var solis3 = document.getElementById("solis3");
+			var solis4 = document.getElementById("solis4");
+			var tabula = document.getElementById("tabula");
+
+			var solisNr = 1;
+
+			function raditSoli(nr) {
+				solis1.className = "solis";
+				solis2.className = "solis";
+				solis3.className = "solis";
+				solis4.className = "solis";
+				document.getElementById("solis" + nr).className = "solis aktīvs";
+				solisNr = nr;
+			}
+
+			function nakamais(virziens) {
+				raditSoli(solisNr + virziens);
+			}
+
+			function saglabat() {
+				var ieraksts = {
+					vards:      forma1.vards.value,
+					uzvards:    forma1.uzvards.value,
+					vecums:     forma1.vecums.value,
+					dzimums:    forma1.dzimums.value,
+					epasts:     forma2.epasts.value,
+					talrunis:   forma2.talrunis.value,
+					pilseta:    forma2.pilseta.value,
+					skola:      forma2.skola.value,
+					prieksmets: forma3.prieksmets.value,
+					atzime:     forma3.atzime.value,
+					komentars:  forma3.komentars.value
+				};
+
+				var dati = JSON.parse(localStorage.getItem("skoleni") || "[]");
+				dati.push(ieraksts);
+				localStorage.setItem("skoleni", JSON.stringify(dati, null, 2));
+
+				raditTabulu(dati);
+				raditSoli(4);
+			}
+
+			function raditTabulu(dati) {
+				var html = '<table border="1" cellpadding="3" cellspacing="0">';
+				html += `<tr>
+					<th>#</th>
+					<th>Vārds</th>
+					<th>Uzvārds</th>
+					<th>Vecums</th>
+					<th>Dzimums</th>
+					<th>E-pasts</th>
+					<th>Tālrunis</th>
+					<th>Pilsēta</th>
+					<th>Skola</th>
+					<th>Priekšmets</th>
+					<th>Atzīme</th>
+					<th>Komentārs</th>
+				</tr>`;
+				for (var i = 0; i < dati.length; i++) {
+					var r = dati[i];
+					html += `<tr>
+						<td>${i + 1}</td>
+						<td>${r.vards}</td>
+						<td>${r.uzvards}</td>
+						<td>${r.vecums}</td>
+						<td>${r.dzimums}</td>
+						<td>${r.epasts}</td>
+						<td>${r.talrunis}</td>
+						<td>${r.pilseta}</td>
+						<td>${r.skola}</td>
+						<td>${r.prieksmets}</td>
+						<td>${r.atzime}</td>
+						<td>${r.komentars}</td>
+					</tr>`;
+				}
+				html += "</table>";
+				tabula.innerHTML = html;
+			}
+
+			function jauns() {
+				forma1.reset();
+				forma2.reset();
+				forma3.reset();
+				raditSoli(1);
+			}
+		</script>
+	</body>
+</html>
