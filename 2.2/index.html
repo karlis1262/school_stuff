@@ -4,28 +4,30 @@
 		<meta charset="UTF-8" />
 		<title>Skolēnu Reģistrācija</title>
 		<style>
-			.solis { display: none; }
-			.solis.aktīvs { display: block; }
+			.solis {
+				display: none;
+			}
+			.solis.aktīvs {
+				display: block;
+			}
 		</style>
 	</head>
 	<body>
-		<table width="100%" bgcolor="#b8b8b8" cellpadding="7" cellspacing="0" border="0">
-			<tr valign="middle">
+		<table cellpadding="7" cellspacing="0">
+			<tr>
 				<td>
 					<h1>Skolēnu Aptauja</h1>
-					<font face="Arial" size="2">Aizpildiet visas trīs formas.</font>
+					Aizpildiet visās trīs formas.
 				</td>
 			</tr>
 		</table>
 
-		<table width="100%" bgcolor="#d4d4d4" cellpadding="4" cellspacing="0" border="0">
+		<table cellpadding="4" cellspacing="0">
 			<tr>
-				<td align="center">
-					<font face="Arial" size="2">
-						<b>1. Personas dati</b> &nbsp;&gt;&nbsp;
-						2. Kontaktinformācija &nbsp;&gt;&nbsp;
-						3. Aptauja
-					</font>
+				<td>
+					<b>1. Personas dati</b> &nbsp;&gt;&nbsp;
+					2. Kontaktinformācija &nbsp;&gt;&nbsp;
+					3. Aptauja
 				</td>
 			</tr>
 		</table>
@@ -33,7 +35,7 @@
 		<div id="solis1" class="solis aktīvs">
 			<h2>1. solis &ndash; Personas dati</h2>
 			<!-- nevarēju izdomāt kā iekļaut bildi lapas saturā, tāpēc prasību izpildi novietoju to šeit -->
-			<img src="https://picsum.photos/200/300" alt="Bilde" width="200" height="300" align="right"  />
+			<img src="https://picsum.photos/200/300" alt="Bilde" width="200" height="300" />
 			<form id="forma1" action="#" method="get" name="forma1" onsubmit="return false;">
 				<table cellpadding="4" cellspacing="0">
 					<tr>
@@ -183,7 +185,7 @@
 			}
 
 			function raditTabulu(dati) {
-				var html = '<table border="1" cellpadding="3" cellspacing="0">';
+				var html = "<table cellpadding=\"3\" cellspacing=\"0\">";
 				html += `<tr>
 					<th>#</th>
 					<th>Vārds</th>
